@@ -1,0 +1,325 @@
+* {
+  font-family: 'Josefin Sans';
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: .3s;
+}
+main {
+  background: url(../public/images/bg-desktop-dark.jpg) no-repeat,hsl(235, 21%, 11%);
+  min-height: 100vh;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5% 0;
+  align-items: center;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 500px;
+}
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: .8rem;
+  color: hsl(0, 0%, 100%);
+}
+.theme-switcher-button {
+  background: transparent;
+  border: none;
+  position: relative;
+  cursor: pointer;
+}
+.todo-input-div {
+  width: 90%;
+  max-width: 500px;
+  background: hsl(235, 24%, 19%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  margin: 2% 0 1%;
+  padding: 0 1.1rem;
+}
+.checkbox {
+  display: block;
+  appearance: none;
+  width: 24px;
+  height: 22px;
+  border: 1px solid hsl(234, 11%, 52%);
+  cursor: pointer;
+  border-radius: 100px;
+  position: relative;
+  transition: .2s;
+}
+.checkbox:hover {
+  background: linear-gradient(hsl(235, 24%, 19%),hsl(235, 24%, 19%)) padding-box,
+              linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+  border: 1px solid transparent;
+}
+.checkbox:checked:hover {
+  background: initial;
+  border: 1px solid hsl(234, 11%, 52%);
+}
+.checkbox:checked::before, .checkbox:checked::after {
+  opacity: 1;
+}
+.checkbox::before {
+  content: url(../public/images/icon-check.svg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -42%;
+  z-index: 5;
+  opacity: 0;
+  transition: .3;
+}
+.checkbox::after {
+  content: '';
+  position: absolute; 
+  width: 100%; 
+  height: 100%;
+  border-radius: 100px;
+  left: 0;
+  top: 0;
+  background: linear-gradient(to bottom right,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-size:  300%;
+  animation: gradient 10s linear infinite forwards;
+  opacity: 0;
+  transition: .3;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+.checkbox:checked + p {
+  text-decoration: line-through;
+  color: hsl(237, 14%, 26%);
+}
+.todo-input {
+  width: 100%;
+  border: none;
+  background: hsl(235, 24%, 19%);
+  color: hsl(234, 39%, 85%);
+  padding: 1.1rem 0 .8rem;
+  font-size: 1.15rem;
+}
+.todo-input::placeholder {
+  color: hsl(234, 11%, 52%);
+}
+.todo-input:focus {
+  outline: none;
+}
+#todo-list {
+  min-height: 200px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 5px;
+  background: hsl(235, 24%, 19%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  position: relative;
+}
+.todo-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.hint {
+  position: absolute;
+  color: hsl(234, 39%, 85%);
+  top: 45%;
+  left: 50%;
+  translate: -50% -50%;
+  text-align: center;
+}
+.todo-item {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  padding: .8rem 0 .8rem 1.1rem;
+  gap: 1rem;
+  width: 100%;
+  border-bottom: 1px solid hsla(233, 11%, 52%, 0.5);
+  color: hsl(234, 39%, 85%);
+  animation: fade-in .3s linear 1 forwards;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    translate: -6%;
+  }
+}
+.todo-item .checkbox {
+  width: 22px;
+}
+.todo-item p {
+  max-width: 80%;
+  height: auto;
+  overflow-wrap: break-word;
+}
+.delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  right: 5%;
+  top: 50%;
+  translate: 0 -50%;
+  opacity: 0; 
+  transition: .2s
+}
+.todo-item:hover > .delete-button {
+  opacity: 1;
+}
+#todo-list footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 3% 0;
+}
+.amount-of-items-left {
+  color: hsl(234, 11%, 52%);
+}
+.tab-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.todo-list-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: hsl(234, 11%, 52%); 
+  transition: .2s;
+}
+.todo-list-button.selected {
+  color: hsl(235, 86%, 59%);
+}
+.todo-list-button:hover {
+  color: hsl(236, 33%, 92%);
+}
+.drag-and-drop-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  translate: -50%;
+  color: hsl(234, 11%, 52%);
+}
+
+
+
+
+
+main.light-mode {
+  background: url(../public/images/bg-desktop-light.jpg), hsl(236, 33%, 92%);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.light-mode .todo-input-div, .light-mode .todo-input {
+  background: hsl(0, 0%, 98%);
+}
+.light-mode .todo-input-div {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+.light-mode .checkbox {
+  border: 1px solid hsl(233, 11%, 84%);
+}
+.light-mode .checkbox:hover {
+  background: linear-gradient(hsl(0, 0%, 98%),hsl(0, 0%, 98%)) padding-box,
+              linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+  border: 1px solid transparent;
+}
+.light-mode .todo-input {
+  color: hsl(235, 19%, 35%);
+}
+.light-mode .todo-input::placeholder {
+  color: hsl(236, 9%, 61%);
+}
+.light-mode #todo-list{
+  background: hsl(0, 0%, 98%);
+}
+.light-mode .todo-item {
+  color: hsl(235, 19%, 35%);
+  border-bottom: 1px solid hsla(233, 11%, 84%, 0.5);
+}
+.light-mode .checkbox:checked + p {
+  text-decoration: line-through;
+  color: hsl(233, 11%, 84%);
+}
+.light-mode .amount-of-items-left {
+  color: hsl(236, 9%, 61%);
+}
+.light-mode .todo-list-button {
+  color: hsl(236, 9%, 61%);
+}
+.light-mode .todo-list-button:hover {
+  color: hsl(235, 19%, 35%);
+}
+.light-mode .todo-list-button.selected {
+  color: hsl(224, 100%, 37%);
+}
+.light-mode .hint {
+  color: hsl(235, 19%, 35%);
+}
+.light-mode .drag-and-drop-hint {
+  color: hsl(236, 9%, 61%);
+}
+
+
+
+@media screen and (max-width: 550px) {
+  .todo-input-div {
+    margin: 6% 0 4%;
+  }
+  main {
+    background: url(../public/images/bg-mobile-dark.jpg) no-repeat,hsl(235, 21%, 11%);
+    background-size: contain;
+    padding: 20% 0 10%;
+    justify-content: flex-start;
+  }
+  h1 {
+    font-size: 2.2rem;
+  }
+  #todo-list footer {
+    position: relative;
+    justify-content: space-between;
+    padding: 3% 5%;
+  }
+  .tab-buttons {
+    position: absolute;
+    width: 100%;
+    top: 125%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 3% 0;
+    background: hsl(235, 24%, 19%);
+  }
+
+
+  main.light-mode {
+    background: url(../public/images/bg-mobile-light.jpg) no-repeat,hsl(236, 33%, 92%);
+    background-size: contain;
+  }
+  .light-mode .tab-buttons {
+    background: hsl(0, 0%, 98%);
+  }
+}
