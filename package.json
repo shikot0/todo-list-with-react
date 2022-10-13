@@ -1,7 +1,7 @@
 {
   "name": "react-template",
   "version": "0.1.0",
-  "hompage": "https://shikot0.github.io/todo-list-with-react",
+  "hompage": "https://shikot0.github.io/todo-list-with-react/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
