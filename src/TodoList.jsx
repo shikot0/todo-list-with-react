@@ -71,7 +71,7 @@ function TodoList({todos, setTodos, saveToLocalStorage}) {
             return unfinishedTodos;
         })
     }
-    // useEffect(() => { saveToLocalStorage()})
+    
     useEffect(() => {showNumberOfCompletedItems();saveToLocalStorage()});
 
     return(

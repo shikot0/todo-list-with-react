@@ -54,7 +54,7 @@ function App() {
       </header>
       <div className="todo-input-div">
         <input type="checkbox" disabled className="checkbox" />
-        <input type="text" value={todoText} className="todo-input" onKeyDown={handleTodos} onChange={e => setTodoText(e.target.value)} placeholder='Create a new todo...' />
+        <input type="text" value={todoText} className="todo-input" onKeyDown={handleTodos} onChange={e => setTodoText(e.target.value)} placeholder='Create a new todo...'/>
       </div>
       <TodoList todos={todos} setTodos={setTodos} saveToLocalStorage={saveToLocalStorage}/>
       <div className="drag-and-drop-hint">Drag and drop to reorder list</div>
